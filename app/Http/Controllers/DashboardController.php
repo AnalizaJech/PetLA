@@ -9,6 +9,7 @@ class DashboardController extends Controller // ← ESTO FALTABA
 {
     public function index()
 {
+    
     $appointments = \App\Models\Appointment::all()->map(function ($a) {
         return [
             'title' => $a->title,

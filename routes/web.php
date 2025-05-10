@@ -23,6 +23,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Recursos
     Route::resource('owners', OwnerController::class);
     Route::resource('pets', PetController::class);
+    Route::resource('veterinarians', VeterinarianController::class);
+    Route::resource('appointments', AppointmentController::class);
+
 });
 
 require __DIR__.'/auth.php';
