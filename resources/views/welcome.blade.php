@@ -268,8 +268,11 @@
                         
                         <div class="w-full h-80 rounded-xl overflow-hidden shadow-lg">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2031575053633!2d-74.80163228461788!3d10.987784492183887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef42d5f1048b6e1%3A0xaddb8c564a015f4!2sVeterinaria%20Rondon!5e0!3m2!1ses-419!2sco!4v1716736729014!5m2!1ses-419!2sco"
-                                class="w-full h-full" style="border:0;" allowfullscreen loading="lazy">
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1634.027369335013!2d-76.3852474402322!3d-13.074201079550619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91101d8069c35a53%3A0xf168b1de2c77cf6a!2sClinica%20Veterinaria%20Mr.%20Pets%20Sede%20San%20Vicente!5e0!3m2!1ses-419!2spe!4v1748441073794!5m2!1ses-419!2spe" 
+                                class="w-full h-full" 
+                                style="border:0;" 
+                                allowfullscreen 
+                                loading="lazy">
                             </iframe>
                         </div>
                     </div>
@@ -333,25 +336,35 @@
     </footer>
 
     <script>
-        const menuBtn = document.getElementById('mobileMenuButton');
-        const closeBtn = document.getElementById('closeMobileMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const iconMenu = document.getElementById('iconMenu');
-        const iconClose = document.getElementById('iconClose');
+    const menuBtn = document.getElementById('mobileMenuButton');
+    const closeBtn = document.getElementById('mobileMenuClose'); // CORREGIDO
+    const mobileMenu = document.getElementById('mobileMenu');
+    const iconMenu = document.getElementById('iconMenu');
+    const iconClose = document.getElementById('iconClose');
 
-        function toggleMenu() {
-            mobileMenu.classList.toggle('hidden');
-            iconMenu.classList.toggle('hidden');
-            iconClose.classList.toggle('hidden');
-        }
+    function toggleMenu() {
+        mobileMenu.classList.toggle('hidden');
+        iconMenu.classList.toggle('hidden');
+        iconClose.classList.toggle('hidden');
+    }
 
+    if (menuBtn) {
         menuBtn.addEventListener('click', toggleMenu);
-        closeBtn.addEventListener('click', toggleMenu);
+    }
 
-        // Cierra al hacer clic en cualquier enlace
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', toggleMenu);
+    if (closeBtn) {
+        closeBtn.addEventListener('click', toggleMenu);
+    }
+
+    // Cierra al hacer clic en cualquier enlace dentro del menú móvil
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (!mobileMenu.classList.contains('hidden')) {
+                toggleMenu();
+            }
         });
-    </script>   
+    });
+</script>
+
 </body>
 </html>
