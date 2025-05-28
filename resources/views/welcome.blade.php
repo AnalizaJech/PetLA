@@ -6,6 +6,9 @@
     <title>Clínica Veterinaria PetCare</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS Animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         .gradient-overlay {
@@ -92,7 +95,7 @@
 
 
     <!-- Hero section mejorada -->
-    <section id="inicio" class="relative h-[90vh] flex items-center">
+    <section id="inicio" class="relative h-[90vh] flex items-center" data-aos="fade-up" data-aos-duration="1000">
         <div class="absolute inset-0 gradient-overlay"></div>
         <div class="container max-w-7xl mx-auto px-4 relative z-10">
             <div class="flex flex-col md:flex-row items-center justify-between h-full">
@@ -129,15 +132,15 @@
 
 
     <!-- Sección Nosotros completa -->
-    <section id="nosotros" class="py-20 bg-gray-50">
+    <section id="nosotros" class="py-20 bg-gray-50" data-aos="fade-right" data-aos-delay="100">
         <div class="container max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="relative rounded-2xl overflow-hidden shadow-lg">
+                <div class="relative rounded-2xl overflow-hidden shadow-lg" data-aos="zoom-in-right" data-aos-delay="200">
                     <img src="https://facultades.unab.cl/cienciasdelavida/wp-content/uploads/2022/02/Medicina-Veterinaria.webp" alt="Equipo veterinario" 
                          class="w-full h-full object-cover" loading="lazy">
                 </div>
                 
-                <div class="space-y-6">
+                <div class="space-y-6" data-aos="fade-left" data-aos-delay="400">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nuestra Pasión por los Animales</h2>
                     <p class="text-lg text-gray-600 leading-relaxed">
                         En PetCare llevamos más de 15 años brindando cuidado especializado a mascotas. 
@@ -145,13 +148,13 @@
                         con un enfoque compasivo para garantizar el bienestar de tus compañeros peludos.
                     </p>
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="flex items-center space-x-3 p-4 bg-white rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-3 p-4 bg-white rounded-lg shadow-sm" data-aos="fade-up" data-aos-delay="600">
                             <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                             <span class="font-semibold">Atención 24/7</span>
                         </div>
-                        <div class="flex items-center space-x-3 p-4 bg-white rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-3 p-4 bg-white rounded-lg shadow-sm" data-aos="fade-up" data-aos-delay="600">
                             <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                             </svg>
@@ -165,7 +168,7 @@
     </section>
 
     <!-- Sección Servicios completa -->
-    <section id="servicios" class="py-20 bg-white">
+    <section id="servicios" class="py-20 bg-white" data-aos="fade-up" data-aos-duration="1000">
         <div class="container max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nuestros Servicios</h2>
@@ -173,7 +176,7 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all" data-aos="zoom-in" data-aos-delay="200">
                     <div class="w-20 h-20 bg-green-100 rounded-xl flex items-center justify-center mb-6">
                         <img src="https://cdn-icons-png.flaticon.com/512/4365/4365924.png" alt="Consulta" class="w-12 h-12">
                     </div>
@@ -182,7 +185,7 @@
                     <a href="#contacto" class="text-green-600 font-semibold hover:text-green-700">Agendar →</a>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all" data-aos="zoom-in" data-aos-delay="400">
                     <div class="w-20 h-20 bg-green-100 rounded-xl flex items-center justify-center mb-6">
                         <img src="https://img.icons8.com/color/96/syringe.png" alt="Vacunación" class="w-12 h-12">
                     </div>
@@ -191,7 +194,7 @@
                     <a href="#contacto" class="text-green-600 font-semibold hover:text-green-700">Agendar →</a>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all" data-aos="zoom-in" data-aos-delay="600">
                     <div class="w-20 h-20 bg-green-100 rounded-xl flex items-center justify-center mb-6">
                         <img src="https://cdn-icons-png.flaticon.com/512/10165/10165725.png" alt="Cirugía" class="w-12 h-12">
                     </div>
@@ -204,12 +207,12 @@
     </section>
 
     <!-- Sección Contacto completa -->
-    <section id="contacto" class="py-20 bg-gray-50">
+    <section id="contacto" class="py-20 bg-gray-50" data-aos="fade-up" data-aos-duration="1000">
         <div class="container max-w-7xl mx-auto px-4">
             <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Contáctanos</h2>
                 <div class="grid md:grid-cols-2 gap-12">
-                    <form class="space-y-6">
+                    <form class="space-y-6" data-aos="fade-right" data-aos-delay="100">
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Nombre completo</label>
@@ -246,7 +249,7 @@
                         </button>
                     </form>
 
-                    <div class="space-y-8">
+                    <div class="space-y-8" data-aos="fade-left" data-aos-delay="300">
                         <div class="bg-green-50 p-6 rounded-xl">
                             <h3 class="text-xl font-semibold mb-4">Información de Contacto</h3>
                             <div class="space-y-3">
@@ -266,7 +269,7 @@
                             </div>
                         </div>
                         
-                        <div class="w-full h-80 rounded-xl overflow-hidden shadow-lg">
+                        <div class="w-full h-80 rounded-xl overflow-hidden shadow-lg" data-aos="zoom-in-up" data-aos-delay="500">
                             <iframe 
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1634.027369335013!2d-76.3852474402322!3d-13.074201079550619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91101d8069c35a53%3A0xf168b1de2c77cf6a!2sClinica%20Veterinaria%20Mr.%20Pets%20Sede%20San%20Vicente!5e0!3m2!1ses-419!2spe!4v1748441073794!5m2!1ses-419!2spe" 
                                 class="w-full h-full" 
@@ -281,7 +284,7 @@
         </div>
     </section>
     {{-- Footer --}}
-    <footer class="bg-green-700 text-white py-10">
+    <footer class="bg-green-700 text-white py-10" data-aos="fade-up" data-aos-duration="800">
         <div class="container max-w-7xl mx-auto px-4 py-4">
             <div class="grid md:grid-cols-3 gap-8 text-sm">
                 {{-- Logo y lema --}}
@@ -362,6 +365,15 @@
             if (!mobileMenu.classList.contains('hidden')) {
                 toggleMenu();
             }
+        });
+    });
+</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    window.addEventListener('load', function () {
+        AOS.init({
+            once: true, // Animación solo una vez
+            duration: 800 // Duración por defecto (ms)
         });
     });
 </script>
