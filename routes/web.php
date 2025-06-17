@@ -4,7 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\PreCitaAdminController;
+use App\Http\Controllers\MascotasController;
 use App\Http\Controllers\Public\PreCitaPublicaController;
+use Illuminate\Support\Facades\Mail;
 
 /*
 
@@ -24,9 +26,9 @@ Route::get('/', function () {
 
 
 // Ruta de dashboard: redirige según el rol usando middleware
-Route::get('/dashboard', fn () => null) // ← evita el error de vista no encontrada
-    ->middleware(['auth', 'verified', 'rol.redirect'])
-    ->name('dashboard');
+//Route::get('/dashboard', fn () => null) // ← evita el error de vista no encontrada
+//    ->middleware(['auth', 'verified', 'rol.redirect'])
+//    ->name('dashboard');
 
 // Rutas protegidas para editar perfil
 Route::middleware('auth')->group(function () {
@@ -36,22 +38,51 @@ Route::middleware('auth')->group(function () {
 });
 
 // Paneles específicos por rol
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('/admin/dashboard', 'admin.dashboard');
-    Route::view('/veterinario/dashboard', 'veterinario.dashboard');
-    Route::view('/cliente/dashboard', 'cliente.dashboard');
-});
+//Route::middleware(['auth', 'verified'])->group(function () {
+//    Route::view('/admin/dashboard', 'admin.dashboard');
+//    Route::view('/veterinario/dashboard', 'veterinario.dashboard');
+//    Route::view('/cadmin/dashboard', 'cliente.dashboard');
+//});
+
+
+
+
+
 
 // Autenticación Breeze
 require __DIR__.'/auth.php';
 
 
 
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('pre-citas', [PreCitaAdminController::class, 'index'])->name('pre_citas.index');
-        Route::post('pre-citas/{preCita}/rechazar', [PreCitaAdminController::class, 'rechazar'])->name('pre_citas.rechazar');
-        Route::post('pre-citas/{preCita}/convertir', [PreCitaAdminController::class, 'convertir'])->name('pre_citas.convertir');
-    });
+    Route::get('/citas', [PreCitaAdminController::class, 'index'])->name('citas');
+    Route::post('/citas/{preCita}/rechazar', [PreCitaAdminController::class, 'rechazar'])->name('citas.rechazar');
+    Route::post('/citas/{preCita}/convertir', [PreCitaAdminController::class, 'convertir'])->name('citas.convertir');
 });
 
+
+
+// -----------------------------------------
+// Rutas dinamicas para el navbar del admin 
+// -----------------------------------------
+
+$pages_admin = [
+    "dashboard" => "admin_panel.dashboard.index",
+    "duenos" => "admin_panel.duenos.index",
+    "veterinarios" => "admin_panel.veterinarios.index",
+    "mascotas" => "admin_panel_mascotas.index",
+    "historial_clinico" => "admin_panel.historial_clinico.index"
+];
+
+Route::middleware(["auth","verified"]) -> group(function () use ($pages_admin){
+    foreach($pages_admin as $uri => $view){
+        Route::view("/{$uri}",$view)-> name($uri);
+    }
+});
+
+// ------------------------
+// ROUTES FOR MASCOTAS
+// ------------------------
+Route::resource('mascotas', MascotasController::class);

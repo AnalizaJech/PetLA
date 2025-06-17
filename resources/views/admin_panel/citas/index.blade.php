@@ -12,12 +12,12 @@
                 <p><strong>Fecha:</strong> {{ $preCita->fecha_solicitada->format('d/m/Y H:i') }}</p>
 
                 <div class="mt-2 flex gap-2">
-                    <form method="POST" action="{{ route('admin.pre_citas.convertir', $preCita) }}">
+                    <form method="POST" action="{{ route('citas.convertir', $preCita) }}">
                         @csrf
                         <x-primary-button>Convertir en cita</x-primary-button>
                     </form>
 
-                    <form method="POST" action="{{ route('admin.pre_citas.rechazar', $preCita) }}">
+                    <form method="POST" action="{{ route('citas.rechazar', $preCita) }}">
                         @csrf
                         <x-danger-button>Rechazar</x-danger-button>
                     </form>

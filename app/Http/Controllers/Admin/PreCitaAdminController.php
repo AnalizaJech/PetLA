@@ -17,7 +17,7 @@ class PreCitaAdminController extends Controller
     public function index()
     {
         $preCitas = PreCita::where('estado', 'pendiente')->get();
-        return view('admin.pre_citas.index', compact('preCitas'));
+        return view('admin_panel.citas.index', compact('preCitas'));
     }
 
     public function rechazar(PreCita $preCita)

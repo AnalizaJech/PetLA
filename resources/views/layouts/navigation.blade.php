@@ -12,9 +12,43 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    @php
+                        $rol = Auth::user()->role;
+                        $navItems= match ($rol) {
+                            "admin" => [
+                                ["name" => "Dashboard", "route" => "dashboard"],
+                                ["name" => "Dueños", "route" => "duenos"],
+                                ["name" => "Mascotas", "route" => "mascotas.index"],
+                                ["name" => "Veterinarios", "route" => "veterinarios"],
+                                ["name" => "Citas", "route" => "citas"],
+                                ["name" => "Historial Clínico", "route" => "historial_clinico"]
+                            ],
+                            "cliente" => [
+                                ["name" => "Dashboard", "route" => "dashboard"],
+                                ["name" => "Dueños", "route" => "duenos"],
+                                ["name" => "Mascotas", "route" => "mascotas"],
+                                ["name" => "Veterinarios", "route" => "veterinarios"],
+                                ["name" => "Citas", "route" => "citas"],
+                                ["name" => "Historial Clínico", "route" => "historial_clinico"]
+                            ],
+                            "veterinario" => [
+                                ["name" => "Dashboard", "route" => "dashboard"],
+                                ["name" => "Dueños", "route" => "duenos"],
+                                ["name" => "Mascotas", "route" => "mascotas.index"],
+                                ["name" => "Veterinarios", "route" => "veterinarios"],
+                                ["name" => "Citas", "route" => "citas"],
+                                ["name" => "Historial Clínico", "route" => "historial_clinico"]
+                            ],
+                            default => [],
+                        }
+                    @endphp
+
+                    @foreach($navItems as $item)
+                        <x-nav-link :href="route($item['route'])" :active="request()->routeIs($item['route'])">
+                            {{ __($item['name']) }}
+                        </x-nav-link>
+                    @endforeach
+                    
                 </div>
             </div>
 
@@ -67,9 +101,11 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            @foreach($navItems as $item)
+                <x-nav-link :href="route($item['route'])" :active="request()->routeIs($item['route'])">
+                    {{ __($item['name']) }}
+                </x-nav-link>
+            @endforeach
         </div>
 
         <!-- Responsive Settings Options -->
