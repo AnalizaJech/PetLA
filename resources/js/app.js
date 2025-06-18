@@ -1,4 +1,6 @@
 import './bootstrap';
+import "./mascotas/index";
+
 
 import Alpine from 'alpinejs';
 import Swal from "sweetalert2";

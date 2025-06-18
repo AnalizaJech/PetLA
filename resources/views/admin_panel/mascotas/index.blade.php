@@ -104,16 +104,16 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex space-x-2">
                                     <!-- Botón Editar -->
-                                    <button class="text-blue-600 hover:text-blue-800" title="Editar">
+                                    <a href="{{ route('mascotas.edit', $mascota->id) }}" class="text-blue-600 hover:text-blue-800">
                                         <i class="fas fa-edit"></i>
-                                    </button>
+                                    </a>
 
                                     <!-- Botón Eliminar -->
                                     <form id="form-delete-{{ $mascota->id }}" action="{{route("mascotas.destroy", $mascota->id)}}" method="POST" >
                                         @csrf
                                         @method("DELETE")
 
-                                        <button type="button"  onclick="confirmDelete({{ $mascota->id }})" class="text-red-600 hover:text-red-800" >
+                                        <button type="button" onclick="confirmDelete({{$mascota->id}})" class="text-red-600 hover:text-red-800" >
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
@@ -185,37 +185,21 @@
 
 @include('admin_panel.mascotas.modals.create')
 
-
 <script>
-function showImageModal(base64) {
-    document.getElementById('modalImage').src = 'data:image/jpeg;base64,' + base64;
-    document.getElementById('imageModal').classList.remove('hidden');
-}
-function closeImageModal() {
-    document.getElementById('imageModal').classList.add('hidden');
-}
 
-function confirmDelete(id) {
-    Swal.fire({
-        title: '¿Está seguro de eliminar la mascota?',
-        text: "Esta acción es permanente",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, eliminar',
-    }).then((result) => {
-        if (result.isConfirmed) {
-        document.getElementById('form-delete-' + id).submit();
-        }
-    });
-}
+    function confirmDelete(id) {
+        Swal.fire({
+            title: '¿Está seguro de eliminar la mascota?',
+            text: "Esta acción es permanente",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                
+            document.getElementById('form-delete-' + id).submit();
+            }
+        });
+    }
 
-document.getElementById('searchInput').addEventListener('keyup', function() {
-    let filter = this.value.toLowerCase();
-    let rows = document.querySelectorAll('#mascotaTable tbody tr');
-
-    rows.forEach(row => {
-        let text = row.textContent.toLowerCase();
-        row.style.display = text.includes(filter) ? '' : 'none';
-    });
-});
 </script>

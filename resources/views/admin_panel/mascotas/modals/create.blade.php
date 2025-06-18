@@ -10,7 +10,7 @@
                         <i class="fas fa-paw text-xl"></i>
                     </div>
                     <div>
-                        <h2 class="text-2xl font-bold">Registrar Mascota</h2>
+                        <h2 id="modalTitle" class="text-2xl font-bold">Agregar Mascota</h2>
                         <p class="text-blue-100 text-sm">Completa la información</p>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                 
                 <!-- Nombre -->
                 <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700 flex items-center space-x-2">
+                    <label class="text-sm font-medium text-gray-700 flex items-center space-x-2">
                         <i class="fas fa-tag text-blue-500"></i>
                         <span>Nombre de la Mascota</span>
                     </label>
@@ -62,7 +62,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- Especie -->
                     <div class="space-y-2">
-                        <label class="block text-sm font-medium text-gray-700 flex items-center space-x-2">
+                        <label class="text-sm font-medium text-gray-700 flex items-center space-x-2">
                             <i class="fas fa-paw text-purple-500"></i>
                             <span>Especie</span>
                         </label>
@@ -75,7 +75,7 @@
 
                     <!-- Raza -->
                     <div class="space-y-2">
-                        <label class="block text-sm font-medium text-gray-700 flex items-center space-x-2">
+                        <label class="text-sm font-medium text-gray-700 flex items-center space-x-2">
                             <i class="fas fa-certificate text-orange-500"></i>
                             <span>Raza</span>
                         </label>
@@ -101,19 +101,17 @@
 
                 <!-- Foto -->
                 <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700 flex items-center space-x-2">
+                    <label class="text-sm font-medium text-gray-700 flex items-center space-x-2">
                         <i class="fas fa-camera text-indigo-500"></i>
                         <span>Fotografía</span>
                     </label>
                     <div class="relative">
                         <input type="file" 
-                                name="foto_blob" 
-                                accept="image/*"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
-                        <p class="text-xs text-gray-500 mt-1 flex items-center space-x-1">
-                            <i class="fas fa-info-circle"></i>
-                            <span>JPG, PNG, GIF (máx. 5MB)</span>
-                        </p>
+                            name="foto_blob" 
+                            accept="image/*"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                        >
+                    
                     </div>
                 </div>
 
