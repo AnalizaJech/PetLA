@@ -26,7 +26,7 @@
                             "cliente" => [
                                 ["name" => "Dashboard", "route" => "dashboard"],
                                 ["name" => "Dueños", "route" => "duenos"],
-                                ["name" => "Mascotas", "route" => "mascotas"],
+                                ["name" => "Mascotas", "route" => "mascotas.index"],
                                 ["name" => "Veterinarios", "route" => "veterinarios"],
                                 ["name" => "Citas", "route" => "citas"],
                                 ["name" => "Historial Clínico", "route" => "historial_clinico"]

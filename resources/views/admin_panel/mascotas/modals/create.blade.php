@@ -32,24 +32,29 @@
                         <i class="fas fa-tag text-blue-500"></i>
                         <span>Nombre de la Mascota</span>
                     </label>
-                    <input type="text" 
-                            name="nombre" 
-                            placeholder="Ej: Max, Luna, Rocky..." 
-                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white" 
-                            required>
+                    <input 
+                        type="text" 
+                        name="nombre" 
+                        required
+                        placeholder="Ej: Max, Luna, Rocky..." 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white" 
+                    >
                 </div>
 
                 <!-- Dueño -->
                 <div class="space-y-2">
-                    <label for="user_id" class="block text-sm font-medium text-gray-700 flex items-center space-x-2">
+                    <label for="user_id" class="text-sm font-medium text-gray-700 flex items-center space-x-2">
                         <i class="fas fa-user text-green-500"></i>
                         <span>Propietario</span>
                     </label>
                     <div class="relative">
-                        <select name="user_id" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white appearance-none" 
-                                required>
+                        <select 
+                            name="user_id" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white appearance-none" 
+                            required
+                        >
                             <option value="">Seleccione un propietario</option>
+                            
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
@@ -66,11 +71,13 @@
                             <i class="fas fa-paw text-purple-500"></i>
                             <span>Especie</span>
                         </label>
-                        <input type="text" 
-                                name="especie" 
-                                placeholder="Perro, Gato, Ave..." 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white" 
-                                required>
+                        <input 
+                            type="text" 
+                            name="especie" 
+                            placeholder="Perro, Gato, Ave..." 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white" 
+                            required
+                        >
                     </div>
 
                     <!-- Raza -->
@@ -79,34 +86,39 @@
                             <i class="fas fa-certificate text-orange-500"></i>
                             <span>Raza</span>
                         </label>
-                        <input type="text" 
-                                name="raza" 
-                                placeholder="Golden, Persa..." 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white"
-                                required>
+                        <input 
+                            type="text"   
+                            name="raza" 
+                            placeholder="Golden, Persa..." 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white"
+                            required
+                        >
                     </div>
                 </div>
 
                 <!-- Fecha de Nacimiento -->
                 <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700 flex items-center space-x-2">
+                    <label class="text-sm font-medium text-gray-700 flex items-center space-x-2">
                         <i class="fas fa-birthday-cake text-pink-500"></i>
                         <span>Fecha de Nacimiento</span>
                     </label>
-                    <input type="date" 
-                            name="fecha_nacimiento" 
-                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white" 
-                            required>
+                    <input 
+                        type="date" 
+                        name="fecha_nacimiento" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white" 
+                        required
+                    >
                 </div>
 
                 <!-- Foto -->
                 <div class="space-y-2">
                     <label class="text-sm font-medium text-gray-700 flex items-center space-x-2">
                         <i class="fas fa-camera text-indigo-500"></i>
-                        <span>Fotografía</span>
+                        <span>Fotografía - png/jpg</span>
                     </label>
                     <div class="relative">
-                        <input type="file" 
+                        <input 
+                            type="file" 
                             name="foto_blob" 
                             accept="image/*"
                             class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"

@@ -1,13 +1,6 @@
-import Swal from "sweetalert2";
 
-function showImageModal(base64) {
-    document.getElementById('modalImage').src = 'data:image/jpeg;base64,' + base64;
-    document.getElementById('imageModal').classList.remove('hidden');
-}
 
-function closeImageModal() {
-    document.getElementById('imageModal').classList.add('hidden');
-}
+
 
 
 /* 
@@ -36,12 +29,3 @@ function confirmDelete(id) {
 
 
 
-document.getElementById('searchInput').addEventListener('keyup', function() {
-    let filter = this.value.toLowerCase();
-    let rows = document.querySelectorAll('#mascotaTable tbody tr');
-
-    rows.forEach(row => {
-        let text = row.textContent.toLowerCase();
-        row.style.display = text.includes(filter) ? '' : 'none';
-    });
-});

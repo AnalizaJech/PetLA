@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('especie');
             $table->string('raza');
             $table->date('fecha_nacimiento');
-            $table->binary('foto_blob')->nullable();
+            $table->string('foto_blob')->nullable();
             $table->timestamps();
         });
     }
