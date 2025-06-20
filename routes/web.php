@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\PreCitaAdminController;
 use App\Http\Controllers\MascotasController;
+use App\Http\Controllers\PreCitaController;
 use App\Http\Controllers\Public\PreCitaPublicaController;
 use Illuminate\Support\Facades\Mail;
 
@@ -86,3 +87,7 @@ Route::middleware(["auth","verified"]) -> group(function () use ($pages_admin){
 // ROUTES FOR MASCOTAS
 // ------------------------
 Route::resource('mascotas', MascotasController::class);
+// ------------------------
+// ROUTES FOR PRE CITAS
+// ------------------------
+Route::resource('precitas', PreCitaController::class);

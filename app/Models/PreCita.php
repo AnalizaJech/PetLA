@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class PreCita extends Model
 {
     protected $fillable = [
-        'nombre_cliente', 'telefono', 'email', 'fecha_solicitada', 'estado',
+        'mascota_id', 
+        'motivo', 
+        'fecha_solicitada', 
+        'rango_hora', 
+        'estado',
+        'observaciones',
     ];
 
-    protected $casts = [
-        'fecha_solicitada' => 'datetime',
-    ];
+    public function mascota()
+    {
+        return $this->belongsTo(Mascotas::class, 'mascota_id');
+    }
 }

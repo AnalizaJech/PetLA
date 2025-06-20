@@ -10,16 +10,11 @@ return new class extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mascota_id')->constrained()->onDelete('cascade');
+            $table->foreignId('mascota_id')->constrained("mascotas")->onDelete('cascade');
             $table->foreignId('veterinario_id')->constrained('users')->onDelete('cascade');
-            $table->dateTime('inicio');
-            $table->dateTime('fin');
-            $table->enum('estado', [
-                'pendiente_pago', 'en_validacion', 'aceptada',
-                'atendida', 'cancelada', 'expirada',
-                'rechazada', 'no_asistio'
-            ])->default('pendiente_pago');
-            $table->binary('comprobante_blob')->nullable();
+            $table->dateTime('fecha_hora');
+            $table->text('motivo');
+            $table->enum('estado', ['pendiente', 'confirmado', 'cancelado'])->default('pendiente');
             $table->timestamps();
         });
     }

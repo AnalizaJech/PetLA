@@ -10,11 +10,12 @@ return new class extends Migration
     {
         Schema::create('pre_citas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_cliente');
-            $table->string('telefono');
-            $table->string('email');
-            $table->dateTime('fecha_solicitada');
-            $table->enum('estado', ['pendiente', 'rechazada', 'convertida'])->default('pendiente');
+            $table->foreignId('mascota_id')->constrained("mascotas")->onDelete('cascade');
+            $table->text('motivo');
+            $table->date('fecha_solicitada');
+            $table->string('rango_hora');
+            $table->enum('estado', ['pendiente', 'aprobado', 'rechazado'])->default('pendiente');
+            $table->text('observaciones')->nullable();
             $table->timestamps();
         });
     }

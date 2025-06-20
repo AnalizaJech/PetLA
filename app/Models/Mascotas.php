@@ -21,4 +21,14 @@ class Mascotas extends Model
     public function usuario(){
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function precitas()
+    {
+        return $this->hasMany(PreCita::class);
+    }
+
+    public function citas()
+    {
+        return $this->hasMany(Cita::class);
+    }
 }

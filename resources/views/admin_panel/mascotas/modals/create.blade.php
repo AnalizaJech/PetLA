@@ -10,7 +10,7 @@
                         <i class="fas fa-paw text-xl"></i>
                     </div>
                     <div>
-                        <h2 id="modalTitle" class="text-2xl font-bold">Agregar Mascota</h2>
+                        <h2 class="text-2xl font-bold">Agregar Mascota</h2>
                         <p class="text-blue-100 text-sm">Completa la información</p>
                     </div>
                 </div>
