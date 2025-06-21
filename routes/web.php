@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\PreCitaAdminController;
+use App\Http\Controllers\CitaController;
 use App\Http\Controllers\MascotasController;
 use App\Http\Controllers\PreCitaController;
 use App\Http\Controllers\Public\PreCitaPublicaController;
@@ -73,7 +74,7 @@ $pages_admin = [
     "dashboard" => "admin_panel.dashboard.index",
     "duenos" => "admin_panel.duenos.index",
     "veterinarios" => "admin_panel.veterinarios.index",
-    "mascotas" => "admin_panel_mascotas.index",
+    "mascotas" => "admin_panel.mascotas.index",
     "historial_clinico" => "admin_panel.historial_clinico.index"
 ];
 
@@ -91,3 +92,7 @@ Route::resource('mascotas', MascotasController::class);
 // ROUTES FOR PRE CITAS
 // ------------------------
 Route::resource('precitas', PreCitaController::class);
+// ------------------------
+// ROUTES FOR CITAS
+// ------------------------
+Route::resource('citas', CitaController::class);

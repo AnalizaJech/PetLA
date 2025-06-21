@@ -10,11 +10,11 @@
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
             <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
                 <div class="flex flex-col sm:flex-row gap-4 flex-1">
-                    <input id="searchInput" type="text" placeholder="Buscar por nombre o teléfono..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none flex-1">
+                    <input id="searchInput" type="text" placeholder="Buscar pre cita" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none flex-1">
                 </div>
-                <button onclick="document.getElementById('modalPrecita').classList.remove('hidden')" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                <a href="{{ route('precitas.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
                     + Agendar Pre Cita
-                </button>
+                </a>
             </div>
         </div>
 
@@ -78,10 +78,9 @@
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex flex-wrap gap-1">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                <div class="text-xs flex flex-wrap gap-1">
                                         {{ $precita->fecha_solicitada }}
-                                    </span>
+                                    
                                 </div>
                             </td>
 
@@ -91,20 +90,28 @@
                             
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex flex-wrap gap-1">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    @php
+                                        $colores=[
+                                            "pendiente" => "bg-yellow-100 text-yellow-800",
+                                            "aprobado" => "bg-green-100 text-green-800",
+                                            "rechazado" => "bg-red-100 text-red-800",
+                                        ]
+                                        
+                                    @endphp
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ $colores[($precita->estado)] ?? 'bg-gray-100 text-gray-800' }}">
                                         {{ $precita->estado }}
                                     </span>
                                 </div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                {{ $precita->observaciones }}
+                                {{ $precita->observaciones ?? 'Sin observaciones' }}
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex space-x-2">
                                     <!-- Botón Editar -->
-                                    <a  class="cursor-pointer text-blue-600 hover:text-blue-800">
+                                    <a href="{{ route('precitas.edit', $precita->id) }}"   class="cursor-pointer text-blue-600 hover:text-blue-800">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
@@ -145,7 +152,6 @@
 
 </x-app-layout>
 
-@include('admin_panel.pre_citas.modals.create')
 
 
 <script>

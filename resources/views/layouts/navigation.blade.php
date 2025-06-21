@@ -28,7 +28,7 @@
                                 ["name" => "Dueños", "route" => "duenos"],
                                 ["name" => "Mascotas", "route" => "mascotas.index"],
                                 ["name" => "Veterinarios", "route" => "veterinarios"],
-                                ["name" => "Citas", "route" => "citas"],
+                                ["name" => "Citas", "route" => "citas.index"],
                                 ["name" => "Pre citas", "route" => "precitas.index"],
                                 ["name" => "Historial Clínico", "route" => "historial_clinico"]
                             ],
