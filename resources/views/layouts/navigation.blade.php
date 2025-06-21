@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('dashboard.index') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
@@ -16,7 +16,7 @@
                         $rol = Auth::user()->role;
                         $navItems= match ($rol) {
                             "admin" => [
-                                ["name" => "Dashboard", "route" => "dashboard"],
+                                ["name" => "Dashboard", "route" => "dashboard.index"],
                                 ["name" => "Dueños", "route" => "duenos"],
                                 ["name" => "Mascotas", "route" => "mascotas.index"],
                                 ["name" => "Veterinarios", "route" => "veterinarios"],
@@ -24,7 +24,7 @@
                                 ["name" => "Historial Clínico", "route" => "historial_clinico"]
                             ],
                             "cliente" => [
-                                ["name" => "Dashboard", "route" => "dashboard"],
+                                ["name" => "Dashboard", "route" => "dashboard.index"],
                                 ["name" => "Dueños", "route" => "duenos"],
                                 ["name" => "Mascotas", "route" => "mascotas.index"],
                                 ["name" => "Veterinarios", "route" => "veterinarios"],
@@ -33,7 +33,7 @@
                                 ["name" => "Historial Clínico", "route" => "historial_clinico"]
                             ],
                             "veterinario" => [
-                                ["name" => "Dashboard", "route" => "dashboard"],
+                                ["name" => "Dashboard", "route" => "dashboard.index"],
                                 ["name" => "Dueños", "route" => "duenos"],
                                 ["name" => "Mascotas", "route" => "mascotas.index"],
                                 ["name" => "Veterinarios", "route" => "veterinarios"],

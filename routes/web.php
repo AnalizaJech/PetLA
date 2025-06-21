@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\PreCitaAdminController;
 use App\Http\Controllers\CitaController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MascotasController;
 use App\Http\Controllers\PreCitaController;
 use App\Http\Controllers\Public\PreCitaPublicaController;
@@ -96,3 +97,8 @@ Route::resource('precitas', PreCitaController::class);
 // ROUTES FOR CITAS
 // ------------------------
 Route::resource('citas', CitaController::class);
+
+// ------------------------
+// ROUTES FOR DASHBOARD
+// ------------------------
+Route::get('/dashboard', [DashboardController::class, 'index'])->name("dashboard.index");
