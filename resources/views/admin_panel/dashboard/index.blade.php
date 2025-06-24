@@ -70,7 +70,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-600">Ingresos del Mes</p>
-                        <p class="text-3xl font-bold text-gray-900 mt-2">€15,420</p>
+                        <p class="text-3xl font-bold text-gray-900 mt-2">S/0,00</p>
                         <p class="text-sm text-green-600 mt-1 flex items-center">
                             <i class="fas fa-arrow-up mr-1"></i>
                             +8.2% vs mes anterior
@@ -269,28 +269,28 @@
         <div class="mt-8 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-6">Accesos Rápidos</h3>
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                <button class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors group">
+                <a href={{route("mascotas.index")}} class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors group">
                     <div class="w-12 h-12 bg-blue-100 group-hover:bg-blue-200 rounded-full flex items-center justify-center mb-2 transition-colors">
                         <i class="fas fa-paw text-blue-600 text-xl"></i>
                     </div>
                     <span class="text-sm font-medium text-gray-700">Mascotas</span>
-                </button>
+                </a>
                 
-                <button class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors group">
+                <a href={{route("citas.create")}} class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors group">
                     <div class="w-12 h-12 bg-green-100 group-hover:bg-green-200 rounded-full flex items-center justify-center mb-2 transition-colors">
                         <i class="fas fa-calendar-plus text-green-600 text-xl"></i>
                     </div>
                     <span class="text-sm font-medium text-gray-700">Nueva Cita</span>
-                </button>
+                </a>
                 
-                <button class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors group">
+                <a href={{route("duenos.index")}} class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors group">
                     <div class="w-12 h-12 bg-purple-100 group-hover:bg-purple-200 rounded-full flex items-center justify-center mb-2 transition-colors">
                         <i class="fas fa-users text-purple-600 text-xl"></i>
                     </div>
                     <span class="text-sm font-medium text-gray-700">Clientes</span>
-                </button>
+                </a>
                 
-                <button class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors group">
+                {{-- <button class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors group">
                     <div class="w-12 h-12 bg-yellow-100 group-hover:bg-yellow-200 rounded-full flex items-center justify-center mb-2 transition-colors">
                         <i class="fas fa-pills text-yellow-600 text-xl"></i>
                     </div>
@@ -309,7 +309,7 @@
                         <i class="fas fa-cog text-indigo-600 text-xl"></i>
                     </div>
                     <span class="text-sm font-medium text-gray-700">Configuración</span>
-                </button>
+                </button> --}}
             </div>
         </div>
     </div>

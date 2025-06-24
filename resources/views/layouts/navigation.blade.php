@@ -17,27 +17,27 @@
                         $navItems= match ($rol) {
                             "admin" => [
                                 ["name" => "Dashboard", "route" => "dashboard.index"],
-                                ["name" => "Dueños", "route" => "duenos"],
+                                ["name" => "Clientes", "route" => "duenos.index"],
                                 ["name" => "Mascotas", "route" => "mascotas.index"],
-                                ["name" => "Veterinarios", "route" => "veterinarios"],
-                                ["name" => "Citas", "route" => "citas"],
+                                ["name" => "Veterinarios", "route" => "veterinarios.index"],
+                                ["name" => "Citas", "route" => "citas.index"],
                                 ["name" => "Historial Clínico", "route" => "historial_clinico"]
                             ],
                             "cliente" => [
                                 ["name" => "Dashboard", "route" => "dashboard.index"],
-                                ["name" => "Dueños", "route" => "duenos"],
+                                ["name" => "Clientes", "route" => "duenos.index"],
                                 ["name" => "Mascotas", "route" => "mascotas.index"],
-                                ["name" => "Veterinarios", "route" => "veterinarios"],
+                                ["name" => "Veterinarios", "route" => "veterinarios.index"],
                                 ["name" => "Citas", "route" => "citas.index"],
                                 ["name" => "Pre citas", "route" => "precitas.index"],
                                 ["name" => "Historial Clínico", "route" => "historial_clinico"]
                             ],
                             "veterinario" => [
                                 ["name" => "Dashboard", "route" => "dashboard.index"],
-                                ["name" => "Dueños", "route" => "duenos"],
+                                ["name" => "Clientes", "route" => "duenos.index"],
                                 ["name" => "Mascotas", "route" => "mascotas.index"],
-                                ["name" => "Veterinarios", "route" => "veterinarios"],
-                                ["name" => "Citas", "route" => "citas"],
+                                ["name" => "Veterinarios", "route" => "veterinarios.index"],
+                                ["name" => "Citas", "route" => "citas.index"],
                                 ["name" => "Historial Clínico", "route" => "historial_clinico"]
                             ],
                             default => [],
