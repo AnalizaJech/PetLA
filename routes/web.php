@@ -79,10 +79,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // ROUTES FOR VETERINARIOS
     // ------------------------
     Route::get('/veterinarios', [UserController::class, 'indexVeterinario'])->name("veterinarios.index");
+    
+
     // -----------------------------
     // ROUTES FOR DUEÑOS O CLIENTES
     // ---------------------------
     Route::get('/duenos', [UserController::class, 'indexDueno'])->name("duenos.index");
+    Route::delete("/duenos/{id}", [UserController::class, "destroy"])->name("duenos.destroy");
 
 
 

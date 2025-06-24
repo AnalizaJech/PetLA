@@ -1,11 +1,25 @@
 <x-app-layout>
    
     @if(Auth::user()->role == "admin")
-        <h2>solo visible para el admin</h2>
+        <section class="container my-3  mx-auto px-4 py-8 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl shadow-lg flex items-center justify-between">
+            <div class="text-lg font-semibold">
+                👋 Administrador, estás de regreso
+            </div>
+            <div class="text-3xl">
+                🤖
+            </div>
+        </section>
     @endif
 
     @if(Auth::user()->role == "veterinario")
-        <h2>solo visible para veterinarion</h2>
+        <section class="container my-3  mx-auto px-4 py-8 bg-gradient-to-r from-green-500 to-indigo-600 text-white rounded-xl shadow-lg flex items-center justify-between">
+            <div class="text-lg font-semibold">
+                👋 Veterinario , estás de regreso
+            </div>
+            <div class="text-3xl">
+                🩺
+            </div>
+        </section>
     @endif
     <h1></h1>
 

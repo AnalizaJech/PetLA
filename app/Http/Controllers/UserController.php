@@ -18,4 +18,11 @@ class UserController extends Controller
         $veterinarios= User::where("role","veterinario")->paginate(5);
         return view('admin_panel.veterinarios.index', compact('veterinarios'));
     }
+
+    public function destroy($id)
+    {
+        $user=User::findOrFail($id);
+        $user->delete();
+        return redirect()->route("duenos.index")->with('success', 'Cliente eliminado correctamente.');
+    }
 }

@@ -21,7 +21,7 @@
         <!-- Tabla -->
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             <div class="overflow-x-auto">
-                <table class="w-full" id="citaTable">
+                <table class="w-full" id="clienteTable">
                     <thead class="bg-gray-50 border-b border-gray-200">
                         <tr>
                             <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -69,11 +69,11 @@
                                     </a>
 
                                     <!-- Botón Eliminar -->
-                                    <form   method="POST" >
+                                    <form id="form-delete-{{ $dueno->id }}" action="{{route("duenos.destroy", $dueno->id)}}"   method="POST" >
                                         @csrf
                                         @method("DELETE")
 
-                                        <button type="button" class="text-red-600 hover:text-red-800" >
+                                        <button type="button"  onclick="confirmDelete({{$dueno->id}})"  class="text-red-600 hover:text-red-800" >
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
@@ -92,7 +92,7 @@
         </div>
 
         <tr>
-            <p id="mensaje" class="hidden text-xs font-medium text-gray-500 text-center  mt-4">No se encontraron resultados de citas</p>
+            <p id="mensaje" class="hidden text-xs font-medium text-gray-500 text-center  mt-4">No se encontraron resultados de Clientes o dueños de mascota</p>
         </tr>
         <!-- Paginación -->
         <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6 mt-6 rounded-lg shadow-sm">
@@ -106,3 +106,34 @@
 </x-app-layout>
 
 
+<script>
+    function confirmDelete(id) {
+        Swal.fire({
+            title: '¿Está seguro de eliminar al cliente o dueño de la mascota?',
+            text: "Esta acción es permanente",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                
+            document.getElementById('form-delete-' + id).submit();
+            }
+        });
+    }
+
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        let filter = this.value.toLowerCase();
+        let rows = document.querySelectorAll('#clienteTable tbody tr');
+        let encontrado = false;
+        rows.forEach(row => {
+            let text = row.textContent.toLowerCase();
+            const coincide = text.includes(filter);
+            row.style.display = coincide ? '' : 'none';
+            if (coincide) encontrado = true;
+        });
+
+        document.getElementById('mensaje').classList.toggle('hidden', encontrado);
+
+    });
+</script>
