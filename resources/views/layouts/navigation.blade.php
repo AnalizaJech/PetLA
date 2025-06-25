@@ -21,24 +21,19 @@
                                 ["name" => "Mascotas", "route" => "mascotas.index"],
                                 ["name" => "Veterinarios", "route" => "veterinarios.index"],
                                 ["name" => "Citas", "route" => "citas.index"],
-                                ["name" => "Historial Clínico", "route" => "historial_clinico"]
+                                ["name" => "Historial Clínico", "route" => "dashboard.index"]
                             ],
                             "cliente" => [
-                                ["name" => "Dashboard", "route" => "dashboard.index"],
-                                ["name" => "Clientes", "route" => "duenos.index"],
-                                ["name" => "Mascotas", "route" => "mascotas.index"],
-                                ["name" => "Veterinarios", "route" => "veterinarios.index"],
-                                ["name" => "Citas", "route" => "citas.index"],
+                                ["name" => "Dashboard", "route" => "cliente_dashboard.index"],
+                                ["name" => "Mis Mascotas", "route" => "cliente_mascotas.index"],
                                 ["name" => "Pre citas", "route" => "precitas.index"],
-                                ["name" => "Historial Clínico", "route" => "historial_clinico"]
+                                ["name" => "Citas Confirmadas", "route" => "citas.index"],
                             ],
                             "veterinario" => [
-                                ["name" => "Dashboard", "route" => "dashboard.index"],
-                                ["name" => "Clientes", "route" => "duenos.index"],
-                                ["name" => "Mascotas", "route" => "mascotas.index"],
-                                ["name" => "Veterinarios", "route" => "veterinarios.index"],
+                                ["name" => "Dashboard", "route" => "veterinario_dashboard.index"],
                                 ["name" => "Citas", "route" => "citas.index"],
-                                ["name" => "Historial Clínico", "route" => "historial_clinico"]
+                                ["name" => "Registrar atenciones", "route" => "duenos.index"],
+                                ["name" => "Consultar Historial", "route" => "mascotas.index"],
                             ],
                             default => [],
                         }

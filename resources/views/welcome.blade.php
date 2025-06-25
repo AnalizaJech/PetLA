@@ -36,7 +36,18 @@
                 <a href="#servicios" class="text-gray-600 hover:text-green-600 transition">Servicios</a>
                 <a href="#contacto" class="text-gray-600 hover:text-green-600 transition">Contacto</a>
                 @auth
-                    <a href="{{ route('dashboard') }}" class="text-gray-600 hover:text-green-600 transition">{{ Auth::user()->name }}</a>
+
+                    @php
+                        $rol = Auth::user()->role;
+                        $ruta = match($rol) {
+                            'admin' => '/dashboard',
+                            'veterinario' => '/veterinario/dashboard',
+                            'cliente' => '/cliente/dashboard',
+                        };
+                    @endphp
+                    <a href="{{ $ruta }}" class="text-gray-600 hover:text-green-600 transition">
+                        {{ Auth::user()->name }}
+                    </a>
                 @else
                     <a href="{{ route('login') }}" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">Iniciar Sesión</a>
                 @endauth

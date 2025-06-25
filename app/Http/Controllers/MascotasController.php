@@ -6,6 +6,7 @@ use App\Models\Mascotas;
 use App\Models\User;
 use Illuminate\Container\Attributes\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class MascotasController extends Controller
@@ -13,6 +14,10 @@ class MascotasController extends Controller
     
     public function index()
     {
+        if (Auth::user()->role === 'cliente') {
+            $mascotas = Mascotas::where('user_id', Auth::id())->get();
+            return view('cliente_panel.mis_mascotas.index', compact('mascotas'));
+        }
         $mascotas = Mascotas::with('usuario')->orderBy('id','desc')->paginate(5);
         $users = User::all();
         return view('admin_panel.mascotas.index', compact('mascotas', 'users'));

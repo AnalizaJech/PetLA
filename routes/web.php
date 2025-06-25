@@ -53,10 +53,10 @@ require __DIR__.'/auth.php';
 
 
 
-// -------------------------------------------------------------------------------------------
-// Todas estas rutas están protegidas: solo acceden usuarios logueados y con email verificado.
-// -------------------------------------------------------------------------------------------
-Route::middleware(['auth', 'verified'])->group(function () {
+// ------------------------------
+// Rutas protegidas del Admin
+// ------------------------------
+Route::middleware(['auth', 'verified','adminMiddelware'])->group(function () {
     // ------------------------
     // ROUTES FOR MASCOTAS
     // ------------------------
@@ -87,22 +87,35 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/duenos', [UserController::class, 'indexDueno'])->name("duenos.index");
     Route::delete("/duenos/{id}", [UserController::class, "destroy"])->name("duenos.destroy");
 
-
-
 });
 
 
+// ------------------------------
+// Rutas protegidas del Cliente
+// ------------------------------
 
-// -----------------------------------------
-// Rutas dinamicas para el navbar del admin 
-// -----------------------------------------
+Route::middleware(['auth', 'verified','clienteMiddelware'])->group(function () {
 
-$pages_admin = [
-    "historial_clinico" => "admin_panel.historial_clinico.index"
-];
+    // ------------------------
+    // DASHBOARD
+    // ------------------------
+    Route::get('cliente/dashboard', [DashboardController::class, 'index'])->name("cliente_dashboard.index");
+    // ------------------------
+    // MIS MASCOTAS
+    // ------------------------
+    Route::get("cliente/mascotas", [MascotasController::class,"index"])->name("cliente_mascotas.index");
+});
 
-Route::middleware(["auth","verified"]) -> group(function () use ($pages_admin){
-    foreach($pages_admin as $uri => $view){
-        Route::view("/{$uri}",$view)-> name($uri);
-    }
+
+// ----------------------------------
+// Rutas protegidas del Veterinario
+// ----------------------------------
+
+Route::middleware(['auth', 'verified','veterinarioMiddelware'])->group(function () {
+    
+    // ------------------------
+    // DASHBOARD
+    // ------------------------
+    Route::get('veterinario/dashboard', [DashboardController::class, 'index'])->name("veterinario_dashboard.index"); 
+
 });

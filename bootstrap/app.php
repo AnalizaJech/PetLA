@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\ClienteMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\RedirigirSegunRol;
+use App\Http\Middleware\VeterinarioMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -12,9 +15,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        
+
         $middleware->alias([
-            'rol.redirect' => RedirigirSegunRol::class,
+            "adminMiddelware" => AdminMiddleware::class,
+            "clienteMiddelware" => ClienteMiddleware::class,
+            "veterinarioMiddelware" => VeterinarioMiddleware::class,
         ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
