@@ -51,8 +51,17 @@ Route::middleware('auth')->group(function () {
 // Autenticación Breeze
 require __DIR__.'/auth.php';
 
+// ------------------------------
+// Rutas comunes
+// ------------------------------
+
+Route::middleware('auth')->group(function () {
+    
+    Route::resource('mascotas', MascotasController::class);
+    Route::resource('precitas', PreCitaController::class);
 
 
+});
 // ------------------------------
 // Rutas protegidas del Admin
 // ------------------------------
@@ -60,11 +69,9 @@ Route::middleware(['auth', 'verified','adminMiddelware'])->group(function () {
     // ------------------------
     // ROUTES FOR MASCOTAS
     // ------------------------
-    Route::resource('mascotas', MascotasController::class);
     // ------------------------
     // ROUTES FOR PRE CITAS
     // ------------------------
-    Route::resource('precitas', PreCitaController::class);
     // ------------------------
     // ROUTES FOR CITAS
     // ------------------------
@@ -103,7 +110,6 @@ Route::middleware(['auth', 'verified','clienteMiddelware'])->group(function () {
     // ------------------------
     // MIS MASCOTAS
     // ------------------------
-    Route::get("cliente/mascotas", [MascotasController::class,"index"])->name("cliente_mascotas.index");
 });
 
 
@@ -117,5 +123,5 @@ Route::middleware(['auth', 'verified','veterinarioMiddelware'])->group(function 
     // DASHBOARD
     // ------------------------
     Route::get('veterinario/dashboard', [DashboardController::class, 'index'])->name("veterinario_dashboard.index"); 
-
+    
 });

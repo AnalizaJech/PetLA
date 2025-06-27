@@ -106,7 +106,9 @@ class MascotasController extends Controller
 
         // borramos la data 
         $mascota->delete();
-
+        if(Auth::user()->role === "cliente"){
+            return redirect()->route("mascotas.index")->with('success', 'Mascota eliminada correctamente.');
+        }
         return redirect()->route('mascotas.index')->with('success', 'Mascota eliminada correctamente.');
     }
 

@@ -5,13 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Mascotas;
 use App\Models\PreCita;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PreCitaController extends Controller
 {
     public function index()
     {
-        $precitas = PreCita::with('mascota')->orderBy('id','desc')->paginate(5);
+
+        if(Auth::user()->role="cliente"){
+            $precitas = PreCita::whereHas('mascota', function($q) {
+                $q->where('user_id', Auth::id() ); 
+                })
+                ->orderBy('id','desc')
+                ->get();
+
+            $mascotas = Mascotas::where("user_id", Auth::id())
+                ->orderBy("nombre","desc")
+                ->get();
+
+            return view('cliente_panel.pre_citas.index', compact('precitas','mascotas'));
+        }
+
         $mascotas = Mascotas::all();
+        $precitas = PreCita::with('mascota')->orderBy('id','desc')->paginate(5);
         return view('admin_panel.pre_citas.index', compact('precitas', 'mascotas'));
     }
 
@@ -42,6 +58,7 @@ class PreCitaController extends Controller
         ]);
 
         PreCita::create($request->all());
+
         return redirect()->route('precitas.index')->with('success', 'Pre-cita creada correctamente.');
     }
 

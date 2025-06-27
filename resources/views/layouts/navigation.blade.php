@@ -25,7 +25,7 @@
                             ],
                             "cliente" => [
                                 ["name" => "Dashboard", "route" => "cliente_dashboard.index"],
-                                ["name" => "Mis Mascotas", "route" => "cliente_mascotas.index"],
+                                ["name" => "Mis Mascotas", "route" => "mascotas.index"],
                                 ["name" => "Pre citas", "route" => "precitas.index"],
                                 ["name" => "Citas Confirmadas", "route" => "citas.index"],
                             ],
