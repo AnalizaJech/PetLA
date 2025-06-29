@@ -99,11 +99,11 @@
                                     </a>
 
                                     <!-- Botón Eliminar -->
-                                    <form id="form-delete-{{ $cita->id }}" action="{{route("citas.destroy", $cita->id)}}" method="POST" >
+                                    <form id="delete-cita-{{ $cita->id }}" action="{{route("citas.destroy", $cita->id)}}" method="POST" >
                                         @csrf
                                         @method("DELETE")
 
-                                        <button type="button" onclick="confirmDelete({{$cita->id}})" class="text-red-600 hover:text-red-800" >
+                                        <button type="button" onclick="alertDelete('delete-cita-{{ $cita->id }}','la cita')" class="text-red-600 hover:text-red-800" >
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
@@ -112,9 +112,7 @@
                             </td>
                         </tr>
                         @empty
-                            <tr>
-                                <td colspan="6" class="px-4 py-4 text-center text-gray-500">No hay citas registradas.</td>
-                            </tr>
+                            <x-common.empty-table title="No hay citas registradas." />
                         @endforelse
                     </tbody>
                 </table>
@@ -124,6 +122,7 @@
         <tr>
             <p id="mensaje" class="hidden text-xs font-medium text-gray-500 text-center  mt-4">No se encontraron resultados de citas</p>
         </tr>
+        
         <!-- Paginación -->
         <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6 mt-6 rounded-lg shadow-sm">
             {{$citas->links()}}
@@ -137,21 +136,7 @@
 
 
 <script>
-    function confirmDelete(id) {
-        Swal.fire({
-            title: '¿Está seguro de eliminar la cita?',
-            text: "Esta acción es permanente",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, eliminar',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                
-            document.getElementById('form-delete-' + id).submit();
-            }
-        });
-    }
-
+    
     document.getElementById('searchInput').addEventListener('keyup', function() {
         let filter = this.value.toLowerCase();
         let rows = document.querySelectorAll('#citaTable tbody tr');
@@ -166,4 +151,5 @@
         document.getElementById('mensaje').classList.toggle('hidden', encontrado);
 
     });
+
 </script>

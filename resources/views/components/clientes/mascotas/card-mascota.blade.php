@@ -24,19 +24,21 @@
                     data-especie="{{$especie}} "
                     data-raza="{{$raza}}"
                     data-nacimiento="{{$nacimiento}}" 
+                    data-peso="{{$peso}}" 
+                    data-sexo="{{$sexo}}" 
                     data-fotourl="{{ $foto ? asset('storage/' . $foto) : 'https://png.pngtree.com/png-clipart/20230924/original/pngtree-dog-icon-logo-illustration-template-pet-animal-art-vector-png-image_12850819.png'}}"
                     data-action="{{ route('mascotas.update', $id) }}"
                     
                     class="text-blue-600 hover:text-blue-700 p-2 hover:bg-blue-50 rounded-lg transition-colors">
                     <i class="fas fa-edit"></i>
                 </button>
-                <form  id="form-delete-{{ $id }}" action="{{route("mascotas.destroy", $id)}}" method="POST">
+                <form  id="delete-mimascota-{{ $id }}" action="{{route("mascotas.destroy", $id)}}" method="POST">
                     @csrf
                     @method("DELETE")
 
                     <button 
                         type="button"
-                        onclick="confirmDelete({{$id}})"
+                        onclick="alertDelete('delete-mimascota-{{ $id }}','su mascota')"
                         class="text-red-600 hover:text-red-700 p-2 hover:bg-red-50 rounded-lg transition-colors">
                         <i class="fas fa-trash"></i>
                     </button>
@@ -46,16 +48,16 @@
 
         <div class="space-y-2 mb-4">
             <div class="flex items-center text-sm text-gray-600">
-                <i class="fas fa-check-circle mr-3 text-green-500"></i>
+                <i class="fas fa-paw text-blue-600 mr-3"></i>
                 <span>Especie: {{ $especie }}</span>
             </div>
             <div class="flex items-center text-sm text-gray-600">
-                <i class="fas fa-check-circle mr-3 text-green-500"></i>
+                <i class="fas fa-paw text-blue-600 mr-3"></i>
                 <span>Raza: {{ $raza }}</span>
             </div>
             <div class="flex items-center text-sm text-gray-600">
-                <i class="fas fa-check-circle mr-3 text-green-500"></i>
-                <span>{{ \Carbon\Carbon::parse($nacimiento)->locale('es')->diffForHumans(null, true) }}</span>
+                <i class="fas fa-paw text-blue-600 mr-3"></i>
+                <span>Nació hace: {{ \Carbon\Carbon::parse($nacimiento)->locale('es')->diffForHumans(null, true) }}</span>
             </div>
             <div class="flex items-center text-sm text-gray-600">
                 <i class="fas fa-birthday-cake w-4 text-center mr-3 text-pink-500"></i>
@@ -63,11 +65,12 @@
             </div>
             <div class="flex items-center text-sm text-gray-600">
                 <i class="fas fa-weight w-4 text-center mr-3 text-purple-500"></i>
-                <span>28 kg</span>
+                <span>{{$peso}} kg</span>
             </div>
             <div class="flex items-center text-sm text-gray-600">
-                <i class="fas fa-mars w-4 text-center mr-3 text-blue-500"></i>
-                <span>Macho</span>
+                <i class="fas {{ $sexo == 'macho' ? 'fa-mars text-blue-500' : 'fa-venus text-pink-500' }} w-4 text-center mr-3"></i>
+                <span class="capitalize">{{ $sexo }}</span>
+            
             </div>
         </div>
 
@@ -96,21 +99,7 @@
 </div>
 
 <script>
-    function confirmDelete(id) {
-        Swal.fire({
-            title: '¿Está seguro de eliminar la mascota?',
-            text: "Esta acción es permanente",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, eliminar',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                
-            document.getElementById('form-delete-' + id).submit();
-            }
-        });
-    }
-
+    
     function showModal(btn){
         document.getElementById('modalEditMiMascota').classList.remove('hidden');
         
@@ -119,6 +108,10 @@
         document.getElementById('mascotaEspecie').value=btn.dataset.especie;
         document.getElementById('mascotaRaza').value=btn.dataset.raza;
         document.getElementById('mascotaNacimiento').value=btn.dataset.nacimiento;
+        document.getElementById('mascotaPeso').value=btn.dataset.peso;
+        document.getElementById('mascotaSexo').value=btn.dataset.sexo;
+
+
         
         document.getElementById('preview').src = btn.dataset.fotourl  ;
         const form = document.getElementById('formEditMiMascota');

@@ -39,6 +39,32 @@
 
     </div>
 
+    <div class="flex space-x-4">
+        <!-- peso -->
+        <div class="space-y-2 w-full">
+            <label class="text-sm font-medium text-gray-700 flex items-center space-x-2">
+                <span>Peso</span>
+            </label>
+                <input 
+                    type="text" 
+                    name="peso" 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white" 
+                >
+        </div>
+
+        <!-- sexo -->
+        <div class="space-y-2 w-full">
+            <label class="text-sm font-medium text-gray-700 flex items-center space-x-2">
+                <span>Sexo</span>
+            </label>
+            <select name="sexo" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white" required>
+                <option value="" selected disabled>Seleccione sexo</option>
+                <option value="hembra">Hembra</option>
+                <option value="macho">Macho</option>
+            </select>
+                
+        </div>
+    </div>
 
         <!-- raza -->
     <div class="space-y-2">

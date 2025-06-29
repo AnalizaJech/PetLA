@@ -25,14 +25,14 @@
                         <span>Selecciona tu Mascota</span>
                     </label>
                     <div class="space-y-3">
-                        @foreach($mascotas as $mascota)
+                        @forelse($mascotas as $mascota)
                             <label
                                 class="flex items-center p-3 border border-gray-200 rounded-xl hover:bg-blue-50 hover:border-blue-300 cursor-pointer transition-all">
                                 <input required  type="radio" name="mascota_id" value={{$mascota->id}}
                                     class="text-blue-600 focus:ring-blue-500">
                                 <div class="ml-3 flex items-center space-x-3">
                                     <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                        <img src="{{asset('storage/' . $mascota->foto_blob)}}" alt={{$mascota->nombre}}>
+                                        <img src="{{$mascota->foto_blob ? asset('storage/' . $mascota->foto_blob) :'https://png.pngtree.com/png-clipart/20230924/original/pngtree-dog-icon-logo-illustration-template-pet-animal-art-vector-png-image_12850819.png'}}" alt={{$mascota->nombre}}>
                                     </div>
                                     <div>
                                         <p class="text-sm font-medium text-gray-900">{{$mascota->nombre}}</p>
@@ -43,7 +43,11 @@
                                     </div>
                                 </div>
                             </label>
-                        @endforeach
+                        @empty
+                            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md my-4">
+                                <p class="text-sm font-medium">Antes agregue una mascota.</p>
+                            </div>
+                        @endforelse
 
                         
                     </div>
@@ -69,11 +73,28 @@
                             <i class="fas fa-clock text-orange-500"></i>
                             <span>Rango Hora</span>
                         </label>
-                        <input name="rango_hora"
+                        
+                        <select name="rango_hora"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white appearance-none"
+                            required>
+                            <option value="" selected disabled>Seleccione un rango</option>
+                            <option value="8:00 am - 9:00 am">8:00 am - 9:00 am</option>
+                            <option value="9:00 am - 10:00 am">9:00 am - 10:00 am</option>
+                            <option value="10:00 am - 11:00 am">10:00 am - 11:00 am</option>
+                            <option value="11:00 am - 12:00 pm">11:00 am - 12:00 pm</option>
+                            <option value="12:00 pm - 1:00 pm">12:00 pm - 1:00 pm</option>
+                            <option value="1:00 pm - 2:00 pm">1:00 pm - 2:00 pm</option>
+                            <option value="2:00 pm - 3:00 pm">2:00 pm - 3:00 pm</option>
+                            <option value="3:00 pm - 4:00 pm">3:00 pm - 4:00 pm</option>
+                            <option value="4:00 pm - 5:00 pm">4:00 pm - 5:00 pm</option>
+                            <option value="5:00 pm - 6:00 pm">5:00 pm - 6:00 pm</option>
+                        </select>
+
+                        {{-- <input name="rango_hora"
                             type="text"
                             placeholder="Ejp: entre 8 y 9 am"
                             class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white appearance-none"
-                            required>
+                            required> --}}
                     </div>
                 </div>
 
@@ -103,6 +124,7 @@
                     <i class="fas fa-paper-plane"></i>
                     <span>Solicitar Pre-Cita</span>
                 </button>
+                
             </form>
         </div>
     </div>

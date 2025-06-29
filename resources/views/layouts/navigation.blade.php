@@ -21,7 +21,8 @@
                                 ["name" => "Mascotas", "route" => "mascotas.index"],
                                 ["name" => "Veterinarios", "route" => "veterinarios.index"],
                                 ["name" => "Citas", "route" => "citas.index"],
-                                ["name" => "Historial Clínico", "route" => "dashboard.index"]
+                                ["name" => "Historial Clínico", "route" => "dashboard.index"],
+                                ["name" => "Pre citas", "route" => "precitas.index"]
                             ],
                             "cliente" => [
                                 ["name" => "Dashboard", "route" => "cliente_dashboard.index"],

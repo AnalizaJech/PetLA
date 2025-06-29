@@ -1,7 +1,7 @@
-function confirmDelete(formId, titulo = '¿Está seguro de eliminar?', texto = 'Esta acción es permanente') {
+window.alertDelete = function confirmDelete(formId, titulo) {
     Swal.fire({
-        title: titulo,
-        text: texto,
+        title: `¿Esta seguro de eliminar ${titulo} ?`,
+        text: 'Esta acción es permanente',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sí, eliminar',

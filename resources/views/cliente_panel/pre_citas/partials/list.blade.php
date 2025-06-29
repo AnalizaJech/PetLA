@@ -35,7 +35,7 @@
                     @include("cliente_panel.pre_citas.partials.precitaCard")
                 @empty
                     <!-- Estado Vacío -->
-                    <div id="estadoVacio" class="hidden text-center py-12">
+                    <div class="text-center py-12">
                         <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-calendar-times text-gray-400 text-3xl"></i>
                         </div>

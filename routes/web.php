@@ -43,11 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-
-
-
-
 // Autenticación Breeze
 require __DIR__.'/auth.php';
 
@@ -86,6 +81,7 @@ Route::middleware(['auth', 'verified','adminMiddelware'])->group(function () {
     // ROUTES FOR VETERINARIOS
     // ------------------------
     Route::get('/veterinarios', [UserController::class, 'indexVeterinario'])->name("veterinarios.index");
+    Route::delete('/veterinarios/{id}', [UserController::class, 'destroy'])->name("veterinario.destroy");
     
 
     // -----------------------------

@@ -13,6 +13,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained("users")->onDelete('cascade');
             $table->string('nombre');
             $table->string('especie');
+            $table->string('peso')->nullable();
+            $table->enum('sexo', ['macho', 'hembra']);
             $table->string('raza');
             $table->date('fecha_nacimiento');
             $table->string('foto_blob')->nullable();

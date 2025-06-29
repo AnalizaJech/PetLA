@@ -29,6 +29,8 @@ class MascotasController extends Controller
             'user_id' => 'required',
             'nombre' => 'required|string|max:255',
             'especie' => 'required|string',
+            'peso' =>'nullable|string',
+            'sexo' =>'required|in:macho,hembra',
             'raza' => 'nullable|string',
             'fecha_nacimiento' => 'required|nullable|date',
             'foto_blob' => 'nullable|image|mimes:png,jpg|max:5000'
@@ -44,9 +46,12 @@ class MascotasController extends Controller
         }
 
         // CREATE
-        $data= $request->only("user_id","nombre","especie","raza", "fecha_nacimiento");
+        $data= $request->only("user_id","nombre","especie","raza", "fecha_nacimiento","sexo","peso");
         $data["foto_blob"] = $rutaImg;
         Mascotas::create($data);
+
+        //toast
+
         return redirect()->route('mascotas.index')->with('success', 'Mascota registrada correctamente.');
     }
 
@@ -65,6 +70,8 @@ class MascotasController extends Controller
             'user_id' => 'required',
             'nombre' => 'required|string|max:255',
             'especie' => 'required|string',
+            'peso' =>'nullable|string',
+            'sexo' =>'required|in:macho,hembra',
             'raza' => 'nullable|string',
             'fecha_nacimiento' => 'required|nullable|date',
             'foto_blob' => 'nullable|image|mimes:png,jpg|max:5000'
@@ -89,6 +96,8 @@ class MascotasController extends Controller
         $mascota->user_id = $request->user_id;
         $mascota->nombre = $request->nombre;
         $mascota->especie = $request->especie;
+        $mascota->peso = $request->peso;
+        $mascota->sexo = $request->sexo;
         $mascota->raza = $request->raza;
         $mascota->fecha_nacimiento = $request->fecha_nacimiento;
         $mascota->save();

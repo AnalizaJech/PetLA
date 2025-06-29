@@ -23,7 +23,7 @@
 
         <!-- Contenido del Formulario -->
         <div class="px-6 overflow-y-auto max-h-[calc(95vh-140px)]">
-            <form id="formEditMiMascota" class="space-y-6" method="POST"   enctype="multipart/form-data">
+            <form id="formEditMiMascota" class="space-y-6" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -36,7 +36,7 @@
                         <label class="text-sm font-medium text-gray-700 flex items-center space-x-2">
                             <span>Nombre</span>
                         </label>
-                        <input  id="mascotaName" type="text" name="nombre"
+                        <input id="mascotaName" type="text" name="nombre"
                             class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white"
                             required>
                     </div>
@@ -54,6 +54,32 @@
                     <!-- user_id -->
                     <input name="user_id" value={{ Auth::user()->id }} hidden>
 
+                </div>
+
+                <div class="flex space-x-4">
+                    <!-- peso -->
+                    <div class="space-y-2 w-full">
+                        <label class="text-sm font-medium text-gray-700 flex items-center space-x-2">
+                            <span>Peso</span>
+                        </label>
+                        <input type="text" name="peso" id="mascotaPeso"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white">
+                    </div>
+
+                    <!-- sexo -->
+                    <div class="space-y-2 w-full">
+                        <label class="text-sm font-medium text-gray-700 flex items-center space-x-2">
+                            <span>Sexo</span>
+                        </label>
+                        <select name="sexo" id="mascotaSexo"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white"
+                            required>
+                            <option value="" selected disabled>Seleccione sexo</option>
+                            <option value="hembra">Hembra</option>
+                            <option value="macho">Macho</option>
+                        </select>
+
+                    </div>
                 </div>
 
 
@@ -83,9 +109,10 @@
                     <label class="text-sm font-medium text-gray-700 flex items-center space-x-2">
                         <span>Foto - png/jpg</span>
                     </label>
-                    <input id="mascotaFoto" type="file" name="foto_blob" accept="image/*" placeholder="seleccione archivo"
+                    <input id="mascotaFoto" type="file" name="foto_blob" accept="image/*"
+                        placeholder="seleccione archivo"
                         class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400 bg-gray-50 focus:bg-white">
-                    <img id="preview"   class="mt-2 w-32 h-32 object-cover rounded-xl">
+                    <img id="preview" class="mt-2 w-32 h-32 object-cover rounded-xl">
                 </div>
 
 
@@ -108,14 +135,12 @@
 </div>
 
 <script>
-
-    document.getElementById('mascotaFoto').addEventListener('change', function (e) {
+    document.getElementById('mascotaFoto').addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
             const url = URL.createObjectURL(file);
-            
+
             document.getElementById('preview').src = url;
         }
     });
-
 </script>

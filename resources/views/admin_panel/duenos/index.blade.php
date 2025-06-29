@@ -69,11 +69,11 @@
                                     </a>
 
                                     <!-- Botón Eliminar -->
-                                    <form id="form-delete-{{ $dueno->id }}" action="{{route("duenos.destroy", $dueno->id)}}"   method="POST" >
+                                    <form id="delete-dueno-{{ $dueno->id }}" action="{{route("duenos.destroy", $dueno->id)}}"   method="POST" >
                                         @csrf
                                         @method("DELETE")
 
-                                        <button type="button"  onclick="confirmDelete({{$dueno->id}})"  class="text-red-600 hover:text-red-800" >
+                                        <button type="button"  onclick="alertDelete('delete-dueno-{{ $dueno->id }}','al cliente')"  class="text-red-600 hover:text-red-800" >
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
@@ -82,9 +82,7 @@
                             </td>
                         </tr>
                         @empty
-                            <tr>
-                                <td colspan="6" class="px-4 py-4 text-center text-gray-500">No hay clientes o dueños de mascotas registradas.</td>
-                            </tr>
+                            <x-common.empty-table title="No hay clientes registrados." />
                         @endforelse
                     </tbody>
                 </table>
@@ -107,20 +105,6 @@
 
 
 <script>
-    function confirmDelete(id) {
-        Swal.fire({
-            title: '¿Está seguro de eliminar al cliente o dueño de la mascota?',
-            text: "Esta acción es permanente",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, eliminar',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                
-            document.getElementById('form-delete-' + id).submit();
-            }
-        });
-    }
 
     document.getElementById('searchInput').addEventListener('keyup', function() {
         let filter = this.value.toLowerCase();
@@ -136,4 +120,5 @@
         document.getElementById('mensaje').classList.toggle('hidden', encontrado);
 
     });
+
 </script>

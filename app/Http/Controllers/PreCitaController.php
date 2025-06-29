@@ -12,7 +12,7 @@ class PreCitaController extends Controller
     public function index()
     {
 
-        if(Auth::user()->role="cliente"){
+        if(Auth::user()->role =="cliente"){
             $precitas = PreCita::whereHas('mascota', function($q) {
                 $q->where('user_id', Auth::id() ); 
                 })
@@ -28,14 +28,18 @@ class PreCitaController extends Controller
 
         $mascotas = Mascotas::all();
         $precitas = PreCita::with('mascota')->orderBy('id','desc')->paginate(5);
-        return view('admin_panel.pre_citas.index', compact('precitas', 'mascotas'));
+        $total = $precitas->count();
+        $pendientes = $precitas->where('estado', 'pendiente')->count();
+        $aprobadas = $precitas->where('estado', 'aprobado')->count();
+        $rechazadas = $precitas->where('estado', 'rechazado')->count();
+        return view('admin_panel.pre_citas.index', compact('precitas', 'mascotas','total','pendientes','aprobadas','rechazadas'));
     }
 
     public function destroy($id)
     {
         $precita = PreCita::findOrFail($id);
         $precita->delete();
-        return redirect()->route('precitas.index')->with('success', 'Pre-cita eliminada correctamente.');
+        return redirect()->route('precitas.index')->with('success', 'Pre cita eliminada correctamente.');
     }
 
     public function create()
@@ -59,7 +63,7 @@ class PreCitaController extends Controller
 
         PreCita::create($request->all());
 
-        return redirect()->route('precitas.index')->with('success', 'Pre-cita creada correctamente.');
+        return redirect()->route('precitas.index')->with('success', 'Pre cita creada correctamente.');
     }
 
     public function edit(string $id)
@@ -82,6 +86,6 @@ class PreCitaController extends Controller
 
         $precita = PreCita::findOrFail($id);
         $precita->update($request->all());
-        return redirect()->route('precitas.index')->with('success', 'Pre-cita actualizada correctamente.');
+        return redirect()->route('precitas.index')->with('success', 'Pre cita actualizada correctamente.');
     }
 }

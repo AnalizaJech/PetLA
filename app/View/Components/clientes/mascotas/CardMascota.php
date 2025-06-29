@@ -13,9 +13,11 @@ class CardMascota extends Component
     public $especie;
     public $raza;
     public $nacimiento;
+    public $sexo;
+    public $peso;
     public $id;
 
-    public function __construct($foto, $nombre,$especie,$raza,$fecha_nacimiento,$id)
+    public function __construct($foto, $nombre,$especie,$raza,$fecha_nacimiento,$sexo,$peso,$id)
     {
         $this->foto=$foto;
         $this->nombre=$nombre;
@@ -23,6 +25,8 @@ class CardMascota extends Component
         $this->raza=$raza;
         $this->nacimiento=$fecha_nacimiento;
         $this->id=$id;
+        $this->sexo=$sexo;
+        $this->peso=$peso;
 
     }
 

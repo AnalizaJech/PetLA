@@ -69,11 +69,11 @@
                                     </a>
 
                                     <!-- Botón Eliminar -->
-                                    <form   method="POST" >
+                                    <form id="delete-veterinario-{{$veterinario->id}}" action="{{route('veterinario.destroy',$veterinario->id)}}"   method="POST" >
                                         @csrf
                                         @method("DELETE")
 
-                                        <button type="button" class="text-red-600 hover:text-red-800" >
+                                        <button type="button" onclick="alertDelete('delete-veterinario-{{$veterinario->id}}','el veterinario')" class="text-red-600 hover:text-red-800" >
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
@@ -82,9 +82,7 @@
                             </td>
                         </tr>
                         @empty
-                            <tr>
-                                <td colspan="6" class="px-4 py-4 text-center text-gray-500">No hay citas registradas.</td>
-                            </tr>
+                            <x-common.empty-table title="No hay veterinarios registrados" />
                         @endforelse
                     </tbody>
                 </table>

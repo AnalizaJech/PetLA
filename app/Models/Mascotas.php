@@ -13,6 +13,8 @@ class Mascotas extends Model
         "user_id",
         "nombre",
         "especie",
+        "peso",
+        "sexo",
         "raza",
         "fecha_nacimiento",
         "foto_blob"
