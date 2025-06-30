@@ -9,60 +9,37 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
 
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-600">Total Pre citas</p>
-                        <p class="text-3xl font-bold text-gray-900 mt-2">{{ $total }}</p>
-                    </div>
-                    <div class="bg-blue-100 p-3 rounded-full">
-                        <i class="fas fa-paw"></i>
-                    </div>
-                </div>
-            </div>
+            <x-common.info-card 
+                title="Total Pre citas"
+                total={{$total}}
+                bgIcono="bg-blue-100"
+                icono="fas fa-paw"
+            />
 
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-600">Pendientes</p>
-                        <p class="text-3xl font-bold text-gray-900 mt-2">{{ $pendientes }}</p>
+            <x-common.info-card 
+                title="Pendientes"
+                total={{$pendientes}}
+                bgIcono="bg-yellow-100"
+                icono="fas fa-hourglass-half"
+            />
 
-                    </div>
-                    <div class="bg-yellow-100 p-3 rounded-full">
-                        <i class="fas fa-hourglass-half"></i>
-                    </div>
-                </div>
-            </div>
+            <x-common.info-card 
+                title="Aprobadas"
+                total={{$aprobadas}}
+                bgIcono="bg-green-100"
+                icono="fas fa-check-circle"
+            />
 
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-600">Aprobadas</p>
-                        <p class="text-3xl font-bold text-gray-900 mt-2">{{ $aprobadas }}</p>
-
-                    </div>
-                    <div class="bg-green-100 p-3 rounded-full">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-600">Rechazadas</p>
-                        <p class="text-3xl font-bold text-gray-900 mt-2">{{ $rechazadas }}</p>
-
-                    </div>
-                    <div class="bg-red-100 p-3 rounded-full">
-                        <i class="fas fa-times-circle"></i>
-                    </div>
-                </div>
-            </div>
+            <x-common.info-card 
+                title="Rechazadas"
+                total={{$rechazadas}}
+                bgIcono="bg-red-100"
+                icono="fas fa-times-circle"
+            />
 
         </div>
 
-        <!-- búsqueda y create -->
+        <!-- búsqueda -->
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
             <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
                 <div class="relative w-full">
@@ -72,9 +49,7 @@
                     <input id="searchInput" type="text" placeholder="Buscar por mascota , cliente , fecha ... "
                         class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none w-full">
                 </div>
-                {{-- <a href="{{ route('precitas.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
-                    + Agendar Pre Cita
-                </a> --}}
+                
             </div>
         </div>
 
@@ -99,7 +74,6 @@
                             <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Fecha Preferida
                             </th>
-                        
                             <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Estado
                             </th>
@@ -185,70 +159,22 @@
                                 </td>
 
                                 <td class="px-6 py-auto whitespace-nowrap text-sm font-medium">
-                                    <div x-data="{ open: false }" >
+                                    <div x-data="{ open: false, openModal: false }" >
                                         <!-- Botón de 3 puntitos -->
                                         <button @click="open = !open" class="p-2 rounded-full hover:bg-gray-200 focus:outline-none">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
-                                        <!-- Menú desplegable -->
-                                        <div x-show="open" @click.away="open = false"
-                                            class="absolute right-20 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10 py-1">
-                                            <!-- Editar 
-                                            <a href="{{ route('precitas.edit', $precita->id) }}"
-                                                class="flex items-center px-4 py-2 text-sm text-blue-600 hover:bg-gray-100">
-                                                <i class="fas fa-edit mr-2"></i> Editar
-                                            </a> -->
-                                            <!-- Eliminar 
-                                            <button type="button" onclick="confirmDelete({{ $precita->id }})"
-                                                class="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
-                                                <i class="fas fa-trash-alt mr-2"></i> Eliminar
-                                            </button> -->
-                                            <!-- Procesar Precita -->
-                                            <a href="#"
-                                                class="flex items-center px-4 py-2 text-sm text-green-600 hover:bg-gray-100">
-                                                <i class="fas fa-cogs mr-2"></i> Procesar Precita
-                                            </a>
-                                            <!-- Llamar Cliente -->
-                                            <a href="tel:{{ $precita->mascota->usuario->telefono ?? '' }}"
-                                                class="flex items-center px-4 py-2 text-sm text-green-700 hover:bg-gray-100">
-                                                <i class="fas fa-phone-alt mr-2"></i> Llamar Cliente
-                                            </a>
-                                            <!-- Enviar Gmail -->
-                                            <a href="mailto:{{ $precita->mascota->usuario->email ?? '' }}"
-                                                class="flex items-center px-4 py-2 text-sm text-yellow-600 hover:bg-gray-100">
-                                                <i class="fas fa-envelope mr-2"></i> Enviar Gmail
-                                            </a>
-                                        </div>
+
+                                        @include("admin_panel.pre_citas.partials.menu_despegable")
+                                        @include("admin_panel.pre_citas.partials.modal_confirm")
+
                                     </div>
                                 </td>
 
-                                {{-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <div class="flex space-x-2">
-                                        <!-- Botón Editar -->
-                                        <a href="{{ route('precitas.edit', $precita->id) }}"
-                                            class="cursor-pointer text-blue-600 hover:text-blue-800">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-
-                                        <!-- Botón Eliminar -->
-                                        <form id="form-delete-{{ $precita->id }}"
-                                            action="{{ route('precitas.destroy', $precita->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="button" onclick="confirmDelete({{ $precita->id }})"
-                                                class="text-red-600 hover:text-red-800">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
-
-                                    </div>
-                                </td> --}}
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="px-4 py-4 text-center text-gray-500">No hay precitas
-                                    registradas.</td>
+                                <td colspan="6" class="px-4 py-4 text-center text-gray-500">No hay precitas registradas.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -257,8 +183,7 @@
         </div>
 
         <tr>
-            <p id="mensaje" class="hidden text-xs font-medium text-gray-500 text-center  mt-4">No se encontraron
-                resultados de pre citas</p>
+            <p id="mensaje" class="hidden text-xs font-medium text-gray-500 text-center  mt-4">No se encontraron resultados de pre citas</p>
         </tr>
         <!-- Paginación -->
         <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6 mt-6 rounded-lg shadow-sm">
@@ -268,27 +193,12 @@
 
     </div>
 
-
 </x-app-layout>
 
 
 
 <script>
-    function confirmDelete(id) {
-        Swal.fire({
-            title: '¿Está seguro de eliminar la pre cita?',
-            text: "Esta acción es permanente",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, eliminar',
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                document.getElementById('form-delete-' + id).submit();
-            }
-        });
-    }
-
+    
     document.getElementById('searchInput').addEventListener('keyup', function() {
         let filter = this.value.toLowerCase();
         let rows = document.querySelectorAll('#precitaTable tbody tr');
@@ -303,4 +213,5 @@
         document.getElementById('mensaje').classList.toggle('hidden', encontrado);
 
     });
+
 </script>

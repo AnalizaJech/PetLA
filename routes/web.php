@@ -67,6 +67,8 @@ Route::middleware(['auth', 'verified','adminMiddelware'])->group(function () {
     // ------------------------
     // ROUTES FOR PRE CITAS
     // ------------------------
+    Route::post('/precita/{id}/accion', [PreCitaController::class, 'procesarAccion'])->name('precitas.accion');
+
     // ------------------------
     // ROUTES FOR CITAS
     // ------------------------

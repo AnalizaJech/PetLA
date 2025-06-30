@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cita;
 use App\Models\Mascotas;
 use App\Models\PreCita;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use function Laravel\Prompts\alert;
 
 class PreCitaController extends Controller
 {
@@ -28,11 +32,15 @@ class PreCitaController extends Controller
 
         $mascotas = Mascotas::all();
         $precitas = PreCita::with('mascota')->orderBy('id','desc')->paginate(5);
-        $total = $precitas->count();
-        $pendientes = $precitas->where('estado', 'pendiente')->count();
-        $aprobadas = $precitas->where('estado', 'aprobado')->count();
-        $rechazadas = $precitas->where('estado', 'rechazado')->count();
-        return view('admin_panel.pre_citas.index', compact('precitas', 'mascotas','total','pendientes','aprobadas','rechazadas'));
+        $veterinarios= User::where('role', 'veterinario')->get();
+        $estadisticas = [
+            'total'      => PreCita::count(),
+            'pendientes' => PreCita::where('estado', 'pendiente')->count(),
+            'aprobadas'  => PreCita::where('estado', 'aprobado')->count(),
+            'rechazadas' => PreCita::where('estado', 'rechazado')->count(),
+            
+        ];
+        return view('admin_panel.pre_citas.index', compact('precitas', 'mascotas','veterinarios')+ $estadisticas);
     }
 
     public function destroy($id)
@@ -87,5 +95,46 @@ class PreCitaController extends Controller
         $precita = PreCita::findOrFail($id);
         $precita->update($request->all());
         return redirect()->route('precitas.index')->with('success', 'Pre cita actualizada correctamente.');
+    }
+
+    public function procesarAccion(Request $request, $id)
+    {
+        $preCita = PreCita::findOrFail($id);
+        $accion = $request->input('accion');
+
+        if ($accion === 'aceptar') {
+
+            // actualizo la pre cita
+            $preCita->estado = 'aprobado';
+            $preCita->observaciones = $request->input('notas');
+            $preCita->save();
+            
+            // creo la cita
+            $veterinario= $request->input('veterinario_id');
+
+            Cita::create([
+                'mascota_id' => $preCita->mascota_id,
+                'veterinario_id' => $veterinario,
+                'fecha_hora' => $preCita->fecha_solicitada,
+                'motivo' => $preCita->motivo,
+                'estado' => 'pendiente',
+            ]);
+        }
+
+        if ($accion === 'cambiar_fecha') {
+            $preCita->estado = 'pendiente';
+            $preCita->veterinario_id = $request->input('veterinario_id');
+            $preCita->observaciones = $request->input('notas');
+            $preCita->fecha_solicitada = $request->input('nueva_fecha');
+            $preCita->save();
+        }
+
+        if ($accion === 'rechazar') {
+            $preCita->estado = 'rechazado';
+            $preCita->observaciones = $request->input('notas');
+            $preCita->save();
+        }
+
+        return redirect()->back()->with('success', 'Acción procesada correctamente.');
     }
 }
